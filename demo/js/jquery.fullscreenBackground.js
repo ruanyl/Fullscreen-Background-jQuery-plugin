@@ -11,7 +11,9 @@
     var optionsArr = {
         selector: "img",
         fillOnResize: true,
-        defaultCss: true
+        defaultCss: true,
+        heightScale: 1,
+        widthScale: 1
     };
 
     $.fn.fullscreenBackground = function (options) {
@@ -29,8 +31,8 @@
                 });
 
                 $(parentElement).css({
-                    height: "100%",
-                    width: "100%",
+                    height: 100 * optionsArr.heightScale + "%",
+                    width: 100 * optionsArr.widthScale + "%",
                     overflow: "hidden",
                     position: "fixed",
                     top: "0px",
@@ -50,8 +52,8 @@
     };
 
     function fillBg(selector, parentobj) {
-        var windowHeight = $(window).height();
-        var windowWidth = $(window).width();
+        var windowHeight = $(window).height() * optionsArr.heightScale;
+        var windowWidth = $(window).width() * optionsArr.widthScale;
 
         $(selector, parentobj).each(function () {
             var imgHeight = $(this).attr("height");
